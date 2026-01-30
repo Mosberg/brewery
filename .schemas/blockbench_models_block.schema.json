@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.invalid/schemas/blockbench_models_block.schema.json",
+  "$id": "https://raw.githubusercontent.com/Mosberg/brewery/refs/heads/main/.schemas/blockbench_models_block.schema.json",
   "title": "Blockbench Minecraft Block Model (Mosberg-style)",
   "type": "object",
   "additionalProperties": false,
