@@ -1,0 +1,11 @@
+{
+  "parent": "brewery:block/template_kettle_full",
+  "textures": {
+    "bottom": "brewery:block/kettle_bottom",
+    "content": "brewery:block/alcohol_still",
+    "inside": "brewery:block/kettle_inner",
+    "particle": "brewery:block/kettle_side",
+    "side": "brewery:block/kettle_side",
+    "top": "brewery:block/kettle_top"
+  }
+}

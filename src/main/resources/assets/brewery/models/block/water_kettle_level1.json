@@ -1,0 +1,11 @@
+{
+  "parent": "brewery:block/template_kettle_level1",
+  "textures": {
+    "bottom": "brewery:block/kettle_bottom",
+    "content": "minecraft:block/water_still",
+    "inside": "brewery:block/kettle_inner",
+    "particle": "brewery:block/kettle_side",
+    "side": "brewery:block/kettle_side",
+    "top": "brewery:block/kettle_top"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/blockbench_models_block.schema.json",
+  "title": "Blockbench Minecraft Block Model (Mosberg-style)",
+  "type": "object",
+  "additionalProperties": false,
+
+  "properties": {
+    "format_version": {
+      "type": "string",
+      "description": "Custom version string used in these models (e.g. 1.21.11)."
+    },
+    "credit": {
+      "type": "string"
+    },
+    "parent": {
+      "type": "string",
+      "description": "Parent model reference, e.g. 'brewery:block/template_kettle_level2'."
+    },
+    "ambientocclusion": {
+      "type": "boolean"
+    },
+
+    "textures": { "$ref": "#/$defs/textures" },
+    "elements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/element" }
+    },
+    "groups": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/groupChild" }
+    }
+  },
+
+  "required": ["textures"],
+
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+
+    "uv": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+
+    "direction": {
+      "type": "string",
+      "enum": ["north", "south", "east", "west", "up", "down"]
+    },
+
+    "textures": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "description": "Texture variables (keys) mapped to resource locations (values)."
+    },
+
+    "face": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uv": { "$ref": "#/$defs/uv" },
+        "texture": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Usually a reference like '#side' or '#content'."
+        },
+        "cullface": { "$ref": "#/$defs/direction" },
+        "rotation": {
+          "type": "integer",
+          "enum": [0, 90, 180, 270]
+        },
+        "tintindex": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["texture"]
+    },
+
+    "faces": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "north": { "$ref": "#/$defs/face" },
+        "south": { "$ref": "#/$defs/face" },
+        "east": { "$ref": "#/$defs/face" },
+        "west": { "$ref": "#/$defs/face" },
+        "up": { "$ref": "#/$defs/face" },
+        "down": { "$ref": "#/$defs/face" }
+      }
+    },
+
+    "elementRotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "origin": { "$ref": "#/$defs/vec3" },
+        "axis": { "type": "string", "enum": ["x", "y", "z"] },
+        "angle": { "type": "number", "enum": [-45, -22.5, 0, 22.5, 45] },
+        "rescale": { "type": "boolean" }
+      },
+      "required": ["origin", "axis", "angle"]
+    },
+
+    "element": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "from": { "$ref": "#/$defs/vec3" },
+        "to": { "$ref": "#/$defs/vec3" },
+        "rotation": { "$ref": "#/$defs/elementRotation" },
+        "shade": { "type": "boolean" },
+        "faces": { "$ref": "#/$defs/faces" }
+      },
+      "required": ["from", "to", "faces"]
+    },
+
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "origin": { "$ref": "#/$defs/vec3" },
+        "color": { "type": "integer" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/groupChild" }
+        }
+      },
+      "required": ["name", "origin", "children"]
+    },
+
+    "groupChild": {
+      "oneOf": [
+        { "type": "integer", "minimum": 0, "description": "Index into the elements array." },
+        { "$ref": "#/$defs/group" }
+      ]
+    }
+  }
+}
