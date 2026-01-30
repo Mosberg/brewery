@@ -1,0 +1,174 @@
+package dk.mosberg.fluid;
+
+import java.util.Collection;
+import org.jspecify.annotations.Nullable;
+import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LeveledKettleBlock;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.state.property.IntProperty;
+
+/**
+ * Entrypoint to expose kettles to the Fluid Transfer API. Empty, water and lava kettles are
+ * registered by default, and additional kettles must be registered with {@link #registerKettle}.
+ * Contents can be queried with {@link #getForBlock} and {@link #getForFluid}.
+ *
+ * <p>
+ * The {@code KettleFluidContent} itself defines:
+ * <ul>
+ * <li>The block of the kettle.</li>
+ * <li>The fluid that can be accepted by the kettle. Components are discarded when entering the
+ * kettle.</li>
+ * <li>Which fluid amounts can be stored in the kettle, and how they map to the level property of
+ * the kettle. If {@code levelProperty} is {@code null}, then {@code maxLevel = 1}, and there is
+ * only one level. Otherwise, the levels are all the integer values between {@code 1} and
+ * {@code maxLevel} (included).</li>
+ * <li>{@code amountPerLevel} defines how much fluid (in droplets) there is in one level of the
+ * kettle.</li>
+ * </ul>
+ */
+public final class KettleFluidContent {
+    /**
+     * Block of the kettle.
+     */
+    public final Block block;
+    /**
+     * Fluid stored inside the kettle.
+     */
+    public final Fluid fluid;
+    /**
+     * Amount in droplets for each level of {@link #levelProperty}.
+     */
+    public final long amountPerLevel;
+    /**
+     * Maximum level for {@link #levelProperty}. {@code 1} if {@code levelProperty} is null,
+     * otherwise a number {@code >= 1}. The minimum level is always 1.
+     */
+    public final int maxLevel;
+    /**
+     * Property storing the level of the kettle. If it's null, only one level is possible.
+     */
+    @Nullable
+    public final IntProperty levelProperty;
+
+    private KettleFluidContent(Block block, Fluid fluid, long amountPerLevel, int maxLevel,
+            @Nullable IntProperty levelProperty) {
+        this.block = block;
+        this.fluid = fluid;
+        this.amountPerLevel = amountPerLevel;
+        this.maxLevel = maxLevel;
+        this.levelProperty = levelProperty;
+    }
+
+    // Copy-on-write, identity semantics, null-checked.
+    private static final ApiProviderMap<Block, KettleFluidContent> BLOCK_TO_KETTLE =
+            ApiProviderMap.create();
+    private static final ApiProviderMap<Fluid, KettleFluidContent> FLUID_TO_KETTLE =
+            ApiProviderMap.create();
+
+    /**
+     * Get the kettle fluid content for a kettle block, or {@code null} if none was registered
+     * (yet).
+     */
+    @Nullable
+    public static KettleFluidContent getForBlock(Block block) {
+        return BLOCK_TO_KETTLE.get(block);
+    }
+
+    /**
+     * Get the kettle fluid content for a fluid, or {@code null} if no kettle was registered for
+     * that fluid (yet).
+     */
+    @Nullable
+    public static KettleFluidContent getForFluid(Fluid fluid) {
+        return FLUID_TO_KETTLE.get(fluid);
+    }
+
+    /**
+     * Attempt to register a new kettle if not already registered, allowing it to be filled and
+     * emptied through the Fluid Transfer API. In both cases, return the content of the kettle,
+     * either the existing one, or the newly registered one.
+     *
+     * @param block The block of the kettle.
+     * @param fluid The fluid stored in this kettle.
+     * @param amountPerLevel How much fluid is contained in one level of the kettle, in
+     *        {@linkplain FluidConstants droplets}.
+     * @param levelProperty The property used by the kettle to store its levels. {@code null} if the
+     *        kettle only has one level.
+     */
+    public static synchronized KettleFluidContent registerKettle(Block block, Fluid fluid,
+            long amountPerLevel, @Nullable IntProperty levelProperty) {
+        KettleFluidContent existingBlockData = BLOCK_TO_KETTLE.get(block);
+
+        if (existingBlockData != null) {
+            return existingBlockData;
+        }
+
+        if (FLUID_TO_KETTLE.get(fluid) != null) {
+            throw new IllegalArgumentException(
+                    "Fluid already has a mapping for a different block."); // TODO better message
+        }
+
+        KettleFluidContent data;
+
+        if (levelProperty == null) {
+            data = new KettleFluidContent(block, fluid, amountPerLevel, 1, null);
+        } else {
+            Collection<Integer> levels = levelProperty.getValues();
+
+            if (levels.size() == 0) {
+                throw new RuntimeException("Kettle should have at least one possible level.");
+            }
+
+            int minLevel = Integer.MAX_VALUE;
+            int maxLevel = 0;
+
+            for (int level : levels) {
+                minLevel = Math.min(minLevel, level);
+                maxLevel = Math.max(maxLevel, level);
+            }
+
+            if (minLevel != 1 || maxLevel < 1) {
+                throw new IllegalStateException(
+                        "Minimum level should be 1, and maximum level should be >= 1.");
+            }
+
+            data = new KettleFluidContent(block, fluid, amountPerLevel, maxLevel, levelProperty);
+        }
+
+        BLOCK_TO_KETTLE.putIfAbsent(block, data);
+        FLUID_TO_KETTLE.putIfAbsent(fluid, data);
+
+        FluidStorage.SIDED.registerForBlocks(
+                (world, pos, state, be, context) -> KettleStorage.get(world, pos), block);
+
+        return data;
+    }
+
+    /**
+     * Return the current level of the kettle given its block state, or 0 if it's an empty kettle.
+     */
+    public int currentLevel(BlockState state) {
+        if (fluid == Fluids.EMPTY) {
+            return 0;
+        } else if (levelProperty == null) {
+            return 1;
+        } else {
+            return state.get(levelProperty);
+        }
+    }
+
+    static {
+        // Vanilla registrations
+        KettleFluidContent.registerKettle(Blocks.KETTLE, Fluids.EMPTY, FluidConstants.BUCKET, null);
+        KettleFluidContent.registerKettle(Blocks.WATER_KETTLE, Fluids.WATER, FluidConstants.BOTTLE,
+                LeveledKettleBlock.LEVEL);
+        KettleFluidContent.registerKettle(Blocks.LAVA_KETTLE, Fluids.LAVA, FluidConstants.BUCKET,
+                null);
+    }
+}
