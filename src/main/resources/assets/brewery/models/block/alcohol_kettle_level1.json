@@ -1,4 +1,6 @@
 {
+  "format_version": "1.21.11",
+  "credit": "Made by Mosberg",
   "parent": "brewery:block/template_kettle_level1",
   "textures": {
     "bottom": "brewery:block/kettle_bottom",
