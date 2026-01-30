@@ -1,24 +1,35 @@
 package dk.mosberg;
 
-import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import dk.mosberg.registry.BreweryBehaviors;
+import dk.mosberg.registry.BreweryBlocks;
+import dk.mosberg.registry.BreweryFluids;
+import dk.mosberg.registry.BreweryItemGroups;
+import dk.mosberg.registry.BreweryItems;
+import dk.mosberg.registry.BreweryStorages;
+import net.fabricmc.api.ModInitializer;
 
 public class Brewery implements ModInitializer {
-	public static final String MOD_ID = "brewery";
+    public static final String MOD_ID = "brewery";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    @Override
+    public void onInitialize() {
+        BreweryFluids.register();
+        BreweryBlocks.register();
+        BreweryItems.register();
+        BreweryItemGroups.register();
+        BreweryBehaviors.register();
+        BreweryStorages.register();
 
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+        BreweryFluids.init();
+        BreweryBlocks.init();
+        BreweryItems.init();
+        BreweryItemGroups.init();
+        BreweryBehaviors.init();
+        BreweryStorages.init();
 
-		LOGGER.info("Hello Fabric world!");
-	}
+        LOGGER.info("Brewery registered and initialized.");
+    }
 }
