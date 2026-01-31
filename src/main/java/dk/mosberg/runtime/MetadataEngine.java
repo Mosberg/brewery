@@ -35,6 +35,7 @@ public final class MetadataEngine {
         return metadata;
     }
 
+    @SuppressWarnings("null")
     private static void applyDelta(Metadata metadata, Map<String, Object> delta) {
         if (delta == null)
             return;
@@ -78,6 +79,7 @@ public final class MetadataEngine {
         metadata.clarity += 0.1;
     }
 
+    @SuppressWarnings("null")
     private static void applyInfuse(AlcoholType type, Metadata metadata) {
         // Merge flavor profile from AlcoholType's metadataRules into the metadata's flavorProfile
         var flavorProfile = type.metadataRules().flavorProfile();

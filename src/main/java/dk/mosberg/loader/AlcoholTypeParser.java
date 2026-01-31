@@ -38,18 +38,24 @@ public final class AlcoholTypeParser {
 
         // Parse IngredientRules
         JsonObject ingredientsObj = json.getAsJsonObject("ingredients");
+        @SuppressWarnings("null")
         var fermentables =
                 GSON.fromJson(ingredientsObj.getAsJsonArray("fermentables"), java.util.List.class);
+        @SuppressWarnings("null")
         var botanicals =
                 GSON.fromJson(ingredientsObj.getAsJsonArray("botanicals"), java.util.List.class);
+        @SuppressWarnings("null")
         var modifiers =
                 GSON.fromJson(ingredientsObj.getAsJsonArray("modifiers"), java.util.List.class);
+        @SuppressWarnings("unchecked")
         AlcoholType.IngredientRules ingredients =
                 new AlcoholType.IngredientRules(fermentables, botanicals, modifiers);
 
         // Parse ProcessingChain
         JsonObject processingObj = json.getAsJsonObject("processing");
+        @SuppressWarnings("null")
         var stages = GSON.fromJson(processingObj.getAsJsonArray("stages"), java.util.List.class);
+        @SuppressWarnings("unchecked")
         AlcoholType.ProcessingChain processing = new AlcoholType.ProcessingChain(stages);
 
         // Parse MetadataRules
@@ -57,8 +63,10 @@ public final class AlcoholTypeParser {
         double baseStrength = metaObj.get("base_strength").getAsDouble();
         double strengthPerDistill = metaObj.get("strength_per_distill").getAsDouble();
         double agingEffect = metaObj.get("aging_effect").getAsDouble();
+        @SuppressWarnings({"null", "unchecked"})
         Map<String, Double> clarityModifiers =
                 GSON.fromJson(metaObj.getAsJsonObject("clarity_modifiers"), java.util.Map.class);
+        @SuppressWarnings({"null", "unchecked"})
         Map<String, Integer> flavorProfile =
                 GSON.fromJson(metaObj.getAsJsonObject("flavor_profile"), java.util.Map.class);
         AlcoholType.MetadataRules metadataRules = new AlcoholType.MetadataRules(baseStrength,

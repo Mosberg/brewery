@@ -4,7 +4,7 @@ public class RegistryInit {
     public static void registerAll() {
         ItemsRegistry.register();
         BlocksRegistry.register();
-        BlockEntitiesRegistry.register();
+        BlockEntitiesRegistry.registerAll();
         MachineRegistry.clear();
         AlcoholTypeRegistry.clear();
         LiquidRegistry.clear();
