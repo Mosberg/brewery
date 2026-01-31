@@ -10,12 +10,12 @@ import net.minecraft.util.math.BlockPos;
 public class FermenterBlockEntity extends AbstractMachineBlockEntity {
 
     public FermenterBlockEntity(BlockPos pos, BlockState state) {
-        super(new Identifier(Brewery.MOD_ID, "fermenter"), pos, state);
+        super(Identifier.tryParse(Brewery.MOD_ID + ":fermenter"), pos, state);
     }
 
     @Override
     protected Identifier machineId() {
-        return new Identifier(Brewery.MOD_ID, "fermenter");
+        return Identifier.tryParse(Brewery.MOD_ID + ":fermenter");
     }
 
     @Override

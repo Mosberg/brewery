@@ -2,19 +2,20 @@ package dk.mosberg.machine.impl;
 
 import dk.mosberg.Brewery;
 import dk.mosberg.data.MachineStage;
+import dk.mosberg.machine.base.AbstractMachineBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-public class InfuserBlockEntity {
+public class InfuserBlockEntity extends AbstractMachineBlockEntity {
 
     public InfuserBlockEntity(BlockPos pos, BlockState state) {
-        super(new Identifier(Brewery.MOD_ID, "infuser"), pos, state);
+        super(Identifier.tryParse(Brewery.MOD_ID + ":infuser"), pos, state);
     }
 
     @Override
     protected Identifier machineId() {
-        return new Identifier(Brewery.MOD_ID, "infuser");
+        return Identifier.tryParse(Brewery.MOD_ID + ":infuser");
     }
 
     @Override

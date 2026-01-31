@@ -34,7 +34,7 @@ public final class AlcoholTypeParser {
         // You can wire this to your JSON schema or map fields manually.
         // For brevity, assume fields exist and are valid.
         // id: use json "id" if present, else derive from fileId.
-        Identifier id = json.has("id") ? new Identifier(json.get("id").getAsString()) : fileId;
+        Identifier id = json.has("id") ? Identifier.tryParse(json.get("id").getAsString()) : fileId;
 
         String displayName = json.get("display_name").getAsString();
         String flavorIntent = json.get("flavor_intent").getAsString();
