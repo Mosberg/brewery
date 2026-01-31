@@ -38,13 +38,24 @@ public final class MetadataEngine {
     private static void applyDelta(Metadata metadata, Map<String, Object> delta) {
         if (delta == null)
             return;
-        // You can make this more robust; this is a simple sketch.
         if (delta.containsKey("sugar"))
             metadata.sugar += ((Number) delta.get("sugar")).doubleValue();
         if (delta.containsKey("strength"))
             metadata.strength += ((Number) delta.get("strength")).doubleValue();
         if (delta.containsKey("clarity"))
             metadata.clarity += ((Number) delta.get("clarity")).doubleValue();
+        if (delta.containsKey("color"))
+            metadata.color = (String) delta.get("color");
+        if (delta.containsKey("flavorProfile")) {
+            Object fpObj = delta.get("flavorProfile");
+            if (fpObj instanceof Map<?, ?> fpMap) {
+                for (var entry : fpMap.entrySet()) {
+                    String key = entry.getKey().toString();
+                    int value = ((Number) entry.getValue()).intValue();
+                    metadata.flavorProfile.merge(key, value, Integer::sum);
+                }
+            }
+        }
     }
 
     private static void applyFerment(AlcoholType type, Metadata metadata) {
@@ -68,6 +79,12 @@ public final class MetadataEngine {
     }
 
     private static void applyInfuse(AlcoholType type, Metadata metadata) {
-        // Flavor profile merging would go here.
+        // Merge flavor profile from AlcoholType's metadataRules into the metadata's flavorProfile
+        var flavorProfile = type.metadataRules().flavorProfile();
+        if (flavorProfile != null) {
+            for (var entry : flavorProfile.entrySet()) {
+                metadata.flavorProfile.merge(entry.getKey(), entry.getValue(), Integer::sum);
+            }
+        }
     }
 }

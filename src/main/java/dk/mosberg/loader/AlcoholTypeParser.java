@@ -32,22 +32,37 @@ public final class AlcoholTypeParser {
     }
 
     private static AlcoholType parse(Identifier fileId, JsonObject json) {
-        // You can wire this to your JSON schema or map fields manually.
-        // For brevity, assume fields exist and are valid.
-        // id: use json "id" if present, else derive from fileId.
         Identifier id = json.has("id") ? Identifier.tryParse(json.get("id").getAsString()) : fileId;
-
         String displayName = json.get("display_name").getAsString();
         String flavorIntent = json.get("flavor_intent").getAsString();
 
-        // Parse nested objects (ingredients, processing, metadata_rules) similarly.
-        // Stubbed here:
-        AlcoholType.IngredientRules ingredients = new AlcoholType.IngredientRules(
-                java.util.List.of(), java.util.List.of(), java.util.List.of());
-        AlcoholType.ProcessingChain processing =
-                new AlcoholType.ProcessingChain(java.util.List.of());
-        AlcoholType.MetadataRules metadataRules = new AlcoholType.MetadataRules(0.0, 0.0, 0.0,
-                java.util.Map.of(), java.util.Map.of());
+        // Parse IngredientRules
+        JsonObject ingredientsObj = json.getAsJsonObject("ingredients");
+        var fermentables =
+                GSON.fromJson(ingredientsObj.getAsJsonArray("fermentables"), java.util.List.class);
+        var botanicals =
+                GSON.fromJson(ingredientsObj.getAsJsonArray("botanicals"), java.util.List.class);
+        var modifiers =
+                GSON.fromJson(ingredientsObj.getAsJsonArray("modifiers"), java.util.List.class);
+        AlcoholType.IngredientRules ingredients =
+                new AlcoholType.IngredientRules(fermentables, botanicals, modifiers);
+
+        // Parse ProcessingChain
+        JsonObject processingObj = json.getAsJsonObject("processing");
+        var stages = GSON.fromJson(processingObj.getAsJsonArray("stages"), java.util.List.class);
+        AlcoholType.ProcessingChain processing = new AlcoholType.ProcessingChain(stages);
+
+        // Parse MetadataRules
+        JsonObject metaObj = json.getAsJsonObject("metadata_rules");
+        double baseStrength = metaObj.get("base_strength").getAsDouble();
+        double strengthPerDistill = metaObj.get("strength_per_distill").getAsDouble();
+        double agingEffect = metaObj.get("aging_effect").getAsDouble();
+        Map<String, Double> clarityModifiers =
+                GSON.fromJson(metaObj.getAsJsonObject("clarity_modifiers"), java.util.Map.class);
+        Map<String, Integer> flavorProfile =
+                GSON.fromJson(metaObj.getAsJsonObject("flavor_profile"), java.util.Map.class);
+        AlcoholType.MetadataRules metadataRules = new AlcoholType.MetadataRules(baseStrength,
+                strengthPerDistill, agingEffect, clarityModifiers, flavorProfile);
 
         return new AlcoholType(id, displayName, flavorIntent, ingredients, processing,
                 metadataRules);
