@@ -38,8 +38,8 @@ public class BlockEntitiesRegistry {
             String name, BiFunction<BlockPos, BlockState, T> factory,
             net.minecraft.block.Block block) {
         Identifier id = Identifier.of(Brewery.MOD_ID, name);
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, id,
-                FabricBlockEntityTypeBuilder.create(factory, block).build());
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder
+                .create((FabricBlockEntityTypeBuilder.Factory<T>) factory, block).build());
     }
 
     // Call this during mod initialization (e.g., in your main mod class)
