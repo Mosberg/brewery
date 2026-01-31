@@ -1,0 +1,6 @@
+{
+  "parent": "brewery:item/bottle_drink_template",
+  "textures": {
+    "layer1": "brewery:item/drink_overlays/whiskey"
+  }
+}

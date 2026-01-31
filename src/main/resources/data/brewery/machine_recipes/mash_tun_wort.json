@@ -1,0 +1,15 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:mash_tun",
+  "inputs": [
+    { "ingredient": "brewery:mash", "amount": 1000, "role": "base" },
+    { "ingredient": "minecraft:water_bucket", "amount": 1, "role": "container" }
+  ],
+  "output": {
+    "liquid": "brewery:wort",
+    "amount": 1000,
+    "metadata_delta": { "sugar": 0.9 }
+  },
+  "time": 150,
+  "energy": 30
+}

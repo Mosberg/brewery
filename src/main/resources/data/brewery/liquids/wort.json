@@ -1,0 +1,13 @@
+{
+  "id": "brewery:wort",
+  "display_name": "Wort",
+  "phase": "wort",
+  "base_type": "brewery:beer",
+  "default_metadata": {
+    "sugar": 0.9,
+    "strength": 0.0,
+    "clarity": 0.7,
+    "color": "amber",
+    "flavor_profile": { "grain": 2, "bitter": 1 }
+  }
+}

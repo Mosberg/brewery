@@ -1,0 +1,12 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:crusher",
+  "inputs": [{ "ingredient": "minecraft:wheat_seeds", "amount": 1, "role": "base" }],
+  "output": {
+    "liquid": "brewery:mash",
+    "amount": 1000,
+    "metadata_delta": { "sugar": 1.0 }
+  },
+  "time": 100,
+  "energy": 20
+}

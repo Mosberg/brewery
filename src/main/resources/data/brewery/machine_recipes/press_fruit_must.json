@@ -1,0 +1,12 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:press",
+  "inputs": [{ "ingredient": "minecraft:apple", "amount": 1, "role": "base" }],
+  "output": {
+    "liquid": "brewery:must",
+    "amount": 1000,
+    "metadata_delta": { "sugar": 1.2 }
+  },
+  "time": 120,
+  "energy": 25
+}

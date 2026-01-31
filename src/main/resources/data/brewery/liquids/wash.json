@@ -1,0 +1,13 @@
+{
+  "id": "brewery:wash",
+  "display_name": "Wash",
+  "phase": "wash",
+  "base_type": "brewery:generic",
+  "default_metadata": {
+    "sugar": 0.8,
+    "strength": 0.0,
+    "clarity": 0.6,
+    "color": "clear",
+    "flavor_profile": { "neutral": 1 }
+  }
+}

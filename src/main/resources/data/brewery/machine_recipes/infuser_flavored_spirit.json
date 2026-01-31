@@ -1,0 +1,15 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:infuser",
+  "inputs": [
+    { "ingredient": "brewery:aged_spirit", "amount": 1000, "role": "base" },
+    { "ingredient": "#brewery:botanicals", "amount": 1, "role": "botanical" }
+  ],
+  "output": {
+    "liquid": "brewery:flavored_spirit",
+    "amount": 1000,
+    "metadata_delta": { "botanical": 2, "sweet": 1 }
+  },
+  "time": 250,
+  "energy": 30
+}

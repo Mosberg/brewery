@@ -1,0 +1,15 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:bottler",
+  "inputs": [
+    { "ingredient": "brewery:flavored_spirit", "amount": 1000, "role": "base" },
+    { "ingredient": "minecraft:glass_bottle", "amount": 1, "role": "container" }
+  ],
+  "output": {
+    "liquid": "brewery:flavored_spirit",
+    "amount": 1000,
+    "metadata_delta": {}
+  },
+  "time": 100,
+  "energy": 10
+}

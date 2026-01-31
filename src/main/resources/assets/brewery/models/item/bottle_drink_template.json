@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "brewery:item/bottle_base",
+    "layer1": "brewery:item/drink_overlays/${alcohol_type}"
+  }
+}

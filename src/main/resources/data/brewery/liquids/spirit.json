@@ -1,0 +1,13 @@
+{
+  "id": "brewery:spirit",
+  "display_name": "Spirit",
+  "phase": "spirit",
+  "base_type": "brewery:generic",
+  "default_metadata": {
+    "sugar": 0.0,
+    "strength": 2.0,
+    "clarity": 0.9,
+    "color": "clear",
+    "flavor_profile": { "neutral": 3 }
+  }
+}

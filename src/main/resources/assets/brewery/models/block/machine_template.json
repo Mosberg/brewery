@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "brewery:block/machines/${machine}",
+    "down": "brewery:block/machines/${machine}_bottom",
+    "up": "brewery:block/machines/${machine}_top",
+    "north": "brewery:block/machines/${machine}_side",
+    "south": "brewery:block/machines/${machine}_side",
+    "west": "brewery:block/machines/${machine}_side",
+    "east": "brewery:block/machines/${machine}_side"
+  }
+}

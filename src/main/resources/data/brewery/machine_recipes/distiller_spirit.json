@@ -1,0 +1,12 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:distiller",
+  "inputs": [{ "ingredient": "brewery:young_alcohol", "amount": 1000, "role": "base" }],
+  "output": {
+    "liquid": "brewery:spirit",
+    "amount": 1000,
+    "metadata_delta": { "strength": 2.0, "clarity": 0.2 }
+  },
+  "time": 400,
+  "energy": 50
+}

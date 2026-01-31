@@ -1,0 +1,6 @@
+{
+  "parent": "brewery:block/machine_template",
+  "textures": {
+    "machine": "brewery:block/machines/press"
+  }
+}

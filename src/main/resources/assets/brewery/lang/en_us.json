@@ -1,1 +1,24 @@
-{}
+{
+  "item.brewery.bottle_absinthe": "Absinthe",
+  "item.brewery.bottle_ale": "Ale",
+  "item.brewery.bottle_beer": "Beer",
+  "item.brewery.bottle_brandy": "Brandy",
+  "item.brewery.bottle_cider": "Cider",
+  "item.brewery.bottle_gin": "Gin",
+  "item.brewery.bottle_lager": "Lager",
+  "item.brewery.bottle_mead": "Mead",
+  "item.brewery.bottle_rum": "Rum",
+  "item.brewery.bottle_stout": "Stout",
+  "item.brewery.bottle_vodka": "Vodka",
+  "item.brewery.bottle_whiskey": "Whiskey",
+  "item.brewery.bottle_wine": "Wine",
+  "block.brewery.crusher": "Crusher",
+  "block.brewery.press": "Press",
+  "block.brewery.mash_tun": "Mash Tun",
+  "block.brewery.kettle": "Kettle",
+  "block.brewery.fermenter": "Fermenter",
+  "block.brewery.distiller": "Distiller",
+  "block.brewery.barrel": "Barrel",
+  "block.brewery.infuser": "Infuser",
+  "block.brewery.bottler": "Bottler"
+}

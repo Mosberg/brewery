@@ -1,0 +1,13 @@
+{
+  "id": "brewery:mash",
+  "display_name": "Mash",
+  "phase": "mash",
+  "base_type": "brewery:generic",
+  "default_metadata": {
+    "sugar": 1.0,
+    "strength": 0.0,
+    "clarity": 0.5,
+    "color": "pale",
+    "flavor_profile": { "grain": 2 }
+  }
+}

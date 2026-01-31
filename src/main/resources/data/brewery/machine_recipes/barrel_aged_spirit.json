@@ -1,0 +1,12 @@
+{
+  "type": "brewery:machine_recipe",
+  "machine": "brewery:barrel",
+  "inputs": [{ "ingredient": "brewery:spirit", "amount": 1000, "role": "base" }],
+  "output": {
+    "liquid": "brewery:aged_spirit",
+    "amount": 1000,
+    "metadata_delta": { "oak": 2, "spice": 1, "strength": 0.2 }
+  },
+  "time": 600,
+  "energy": 60
+}

@@ -1,0 +1,13 @@
+{
+  "id": "brewery:flavored_spirit",
+  "display_name": "Flavored Spirit",
+  "phase": "flavored",
+  "base_type": "brewery:generic",
+  "default_metadata": {
+    "sugar": 0.0,
+    "strength": 2.0,
+    "clarity": 0.8,
+    "color": "varied",
+    "flavor_profile": { "botanical": 2, "sweet": 1 }
+  }
+}

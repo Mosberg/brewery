@@ -1,0 +1,13 @@
+{
+  "id": "brewery:aged_spirit",
+  "display_name": "Aged Spirit",
+  "phase": "aged",
+  "base_type": "brewery:generic",
+  "default_metadata": {
+    "sugar": 0.0,
+    "strength": 2.2,
+    "clarity": 1.0,
+    "color": "gold",
+    "flavor_profile": { "oak": 2, "spice": 1 }
+  }
+}

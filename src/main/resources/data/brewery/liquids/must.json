@@ -1,0 +1,13 @@
+{
+  "id": "brewery:must",
+  "display_name": "Must",
+  "phase": "must",
+  "base_type": "brewery:generic",
+  "default_metadata": {
+    "sugar": 1.2,
+    "strength": 0.0,
+    "clarity": 0.6,
+    "color": "gold",
+    "flavor_profile": { "fruit": 2 }
+  }
+}
