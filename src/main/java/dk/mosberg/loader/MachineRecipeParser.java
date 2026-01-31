@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier;
 public class MachineRecipeParser {
     private static final Gson GSON = new Gson();
 
+    @SuppressWarnings("null")
     public static void loadAll(ResourceManager manager) {
         String path = "machine_recipes";
         Map<Identifier, Resource> resources =

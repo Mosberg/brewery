@@ -13,6 +13,7 @@ import net.minecraft.resource.SynchronousResourceReloader;
 import net.minecraft.util.Identifier;
 
 public final class BreweryDataLoader implements SynchronousResourceReloader {
+    @SuppressWarnings("null")
     public static void register() {
         ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(
                 Identifier.of(Brewery.MOD_ID, "data_loader"), new BreweryDataLoader());

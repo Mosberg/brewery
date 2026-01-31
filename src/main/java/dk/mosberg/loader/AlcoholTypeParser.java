@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier;
 public final class AlcoholTypeParser {
     private static final Gson GSON = new Gson();
 
+    @SuppressWarnings("null")
     public static void loadAll(ResourceManager manager) {
         String path = "alcohol_types";
         Map<Identifier, Resource> resources =

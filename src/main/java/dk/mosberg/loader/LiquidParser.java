@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 public class LiquidParser {
     private static final Gson GSON = new Gson();
 
+    @SuppressWarnings("null")
     public static void loadAll(ResourceManager manager) {
         String path = "liquids";
         Map<Identifier, Resource> resources =
