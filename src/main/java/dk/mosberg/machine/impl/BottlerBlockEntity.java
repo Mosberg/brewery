@@ -19,6 +19,6 @@ public class BottlerBlockEntity {
 
     @Override
     protected MachineStage stage() {
-        return MachineStage.BOTTLE;
+        return MachineStage.CONDITION;
     }
 }

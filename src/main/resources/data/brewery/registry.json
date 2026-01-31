@@ -1,0 +1,45 @@
+{
+  "alcohol_types": [
+    "brewery:absinthe",
+    "brewery:ale",
+    "brewery:beer",
+    "brewery:brandy",
+    "brewery:cider",
+    "brewery:gin",
+    "brewery:lager",
+    "brewery:mead",
+    "brewery:rum",
+    "brewery:stout",
+    "brewery:vodka",
+    "brewery:whiskey",
+    "brewery:wine"
+  ],
+  "liquids": [
+    "brewery:mash",
+    "brewery:must",
+    "brewery:wort",
+    "brewery:wash",
+    "brewery:young_alcohol",
+    "brewery:spirit",
+    "brewery:aged_spirit",
+    "brewery:flavored_spirit"
+  ],
+  "machines": [
+    "brewery:crusher",
+    "brewery:press",
+    "brewery:mash_tun",
+    "brewery:kettle",
+    "brewery:fermenter",
+    "brewery:distiller",
+    "brewery:barrel",
+    "brewery:infuser",
+    "brewery:bottler"
+  ],
+  "tags": {
+    "fermentables": "#brewery:fermentables",
+    "seeds": "#brewery:seeds",
+    "catalysts": "#brewery:catalysts",
+    "effect_ingredients": "#brewery:effect_ingredients",
+    "botanicals": "#brewery:botanicals"
+  }
+}

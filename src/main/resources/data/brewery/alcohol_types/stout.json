@@ -1,0 +1,24 @@
+{
+  "id": "brewery:stout",
+  "display_name": "Stout",
+  "flavor_intent": "Dark, rich beer",
+  "ingredients": {
+    "fermentables": ["minecraft:wheat_seeds", "minecraft:beetroot"],
+    "botanicals": ["minecraft:wither_rose", "minecraft:dark_oak_leaves"],
+    "modifiers": ["minecraft:glowstone_dust", "minecraft:redstone"]
+  },
+  "processing": {
+    "stages": ["mash", "boil", "ferment", "condition"],
+    "metadata_rules": {
+      "base_strength": 2.0,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.4,
+      "clarity_modifiers": {},
+      "flavor_profile": {
+        "roast": 3,
+        "bitter": 3,
+        "sweet": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Brewery Liquid Definition",
+  "type": "object",
+  "required": ["id", "phase", "base_type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Liquid ID, e.g. brewery:wort"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["mash", "must", "wort", "wash", "young_alcohol", "spirit", "aged", "flavored"]
+    },
+    "base_type": {
+      "type": "string",
+      "description": "Alcohol type or generic, e.g. brewery:beer or brewery:generic"
+    },
+    "default_metadata": {
+      "type": "object",
+      "description": "Base metadata for this liquid",
+      "properties": {
+        "sugar": { "type": "number" },
+        "strength": { "type": "number" },
+        "clarity": { "type": "number" },
+        "color": { "type": "string" },
+        "flavor_profile": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "brewery:absinthe",
+  "display_name": "Absinthe",
+  "flavor_intent": "Herbal, aromatic, bitter spirit",
+  "ingredients": {
+    "fermentables": ["minecraft:honey_bottle", "minecraft:sweet_berries"],
+    "botanicals": ["minecraft:dandelion", "minecraft:wither_rose", "#minecraft:leaves"],
+    "modifiers": ["minecraft:sugar", "minecraft:glowstone_dust"]
+  },
+  "processing": {
+    "stages": ["ferment", "distill", "infuse", "age"],
+    "metadata_rules": {
+      "base_strength": 3.0,
+      "strength_per_distill": 1.5,
+      "aging_effect": 0.3,
+      "clarity_modifiers": {
+        "minecraft:glowstone_dust": 0.2
+      },
+      "flavor_profile": {
+        "herbal": 4,
+        "bitter": 3,
+        "sweet": 1
+      }
+    }
+  }
+}

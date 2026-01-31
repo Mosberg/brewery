@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Brewery Alcohol Type Definition",
+  "type": "object",
+
+  "required": ["id", "flavor_intent", "processing", "ingredients"],
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier, e.g. brewery:beer"
+    },
+
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable name"
+    },
+
+    "flavor_intent": {
+      "type": "string",
+      "description": "High-level description of the drink's character"
+    },
+
+    "ingredients": {
+      "type": "object",
+      "required": ["fermentables"],
+      "properties": {
+        "fermentables": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Vanilla items or tags usable as base sugars"
+        },
+        "botanicals": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional flavoring ingredients"
+        },
+        "modifiers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional catalysts affecting strength, clarity, duration"
+        }
+      }
+    },
+
+    "processing": {
+      "type": "object",
+      "required": ["stages"],
+      "properties": {
+        "stages": {
+          "type": "array",
+          "description": "Ordered list of required machine stages",
+          "items": {
+            "type": "string",
+            "enum": ["mash", "press", "boil", "ferment", "distill", "age", "infuse", "condition"]
+          }
+        },
+
+        "metadata_rules": {
+          "type": "object",
+          "description": "How machines should adjust metadata",
+          "properties": {
+            "base_strength": { "type": "number" },
+            "strength_per_distill": { "type": "number" },
+            "aging_effect": { "type": "number" },
+            "clarity_modifiers": {
+              "type": "object",
+              "additionalProperties": { "type": "number" }
+            },
+            "flavor_profile": {
+              "type": "object",
+              "additionalProperties": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

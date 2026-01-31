@@ -1,0 +1,27 @@
+{
+  "id": "brewery:gin",
+  "display_name": "Gin",
+  "flavor_intent": "Neutral spirit infused with juniper-like botanicals",
+  "ingredients": {
+    "fermentables": ["minecraft:potato", "minecraft:carrot"],
+    "botanicals": ["minecraft:spruce_leaves", "minecraft:blue_orchid", "minecraft:allium"],
+    "modifiers": ["minecraft:blaze_powder", "minecraft:sugar"]
+  },
+  "processing": {
+    "stages": ["mash", "ferment", "distill", "infuse"],
+    "metadata_rules": {
+      "base_strength": 2.0,
+      "strength_per_distill": 1.5,
+      "aging_effect": 0.0,
+      "clarity_modifiers": {
+        "minecraft:blaze_powder": -0.2,
+        "minecraft:sugar": 0.1
+      },
+      "flavor_profile": {
+        "juniper": 3,
+        "floral": 1,
+        "citrus": 0
+      }
+    }
+  }
+}

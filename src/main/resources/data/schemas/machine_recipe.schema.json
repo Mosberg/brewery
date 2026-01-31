@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Brewery Machine Recipe",
+  "type": "object",
+  "required": ["type", "machine", "inputs", "output"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "brewery:machine_recipe"
+    },
+    "machine": {
+      "type": "string",
+      "description": "Machine ID, e.g. brewery:fermenter"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ingredient"],
+        "properties": {
+          "ingredient": {
+            "type": "string",
+            "description": "Item ID or tag, e.g. minecraft:wheat_seeds or #brewery:fermentables"
+          },
+          "amount": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          },
+          "role": {
+            "type": "string",
+            "enum": ["base", "botanical", "modifier", "catalyst", "container"],
+            "default": "base"
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "required": ["liquid"],
+      "properties": {
+        "liquid": {
+          "type": "string",
+          "description": "Intermediate liquid ID, e.g. brewery:wort"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1000
+        },
+        "metadata_delta": {
+          "type": "object",
+          "description": "Adjustments to liquid metadata",
+          "additionalProperties": true
+        }
+      }
+    },
+    "time": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Ticks required"
+    },
+    "energy": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Optional energy cost"
+    }
+  }
+}

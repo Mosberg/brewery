@@ -1,0 +1,26 @@
+{
+  "id": "brewery:ale",
+  "display_name": "Ale",
+  "flavor_intent": "Malt-forward beer with gentle hops",
+  "ingredients": {
+    "fermentables": ["minecraft:wheat_seeds", "minecraft:potato"],
+    "botanicals": ["#minecraft:small_flowers"],
+    "modifiers": ["minecraft:redstone", "minecraft:glowstone_dust"]
+  },
+  "processing": {
+    "stages": ["mash", "boil", "ferment", "condition"],
+    "metadata_rules": {
+      "base_strength": 1.8,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.3,
+      "clarity_modifiers": {
+        "minecraft:redstone": 0.1
+      },
+      "flavor_profile": {
+        "grain": 3,
+        "bitter": 1,
+        "floral": 2
+      }
+    }
+  }
+}

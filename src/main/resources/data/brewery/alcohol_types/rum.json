@@ -1,0 +1,24 @@
+{
+  "id": "brewery:rum",
+  "display_name": "Rum",
+  "flavor_intent": "Sugar-derived spirit, often aged",
+  "ingredients": {
+    "fermentables": ["minecraft:sugar", "minecraft:potato", "minecraft:sweet_berries"],
+    "botanicals": ["minecraft:mangrove_leaves"],
+    "modifiers": ["minecraft:blaze_powder", "minecraft:redstone"]
+  },
+  "processing": {
+    "stages": ["ferment", "distill", "age"],
+    "metadata_rules": {
+      "base_strength": 2.5,
+      "strength_per_distill": 1.5,
+      "aging_effect": 0.7,
+      "clarity_modifiers": {},
+      "flavor_profile": {
+        "sugar": 3,
+        "oak": 2,
+        "spice": 2
+      }
+    }
+  }
+}

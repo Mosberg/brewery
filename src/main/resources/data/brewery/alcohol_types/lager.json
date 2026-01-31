@@ -1,0 +1,26 @@
+{
+  "id": "brewery:lager",
+  "display_name": "Lager",
+  "flavor_intent": "Clean, crisp beer with extended conditioning",
+  "ingredients": {
+    "fermentables": ["minecraft:wheat_seeds"],
+    "botanicals": ["minecraft:azure_bluet"],
+    "modifiers": ["minecraft:redstone"]
+  },
+  "processing": {
+    "stages": ["mash", "boil", "ferment", "condition"],
+    "metadata_rules": {
+      "base_strength": 1.5,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.4,
+      "clarity_modifiers": {
+        "minecraft:redstone": 0.2
+      },
+      "flavor_profile": {
+        "grain": 2,
+        "crisp": 3,
+        "bitter": 1
+      }
+    }
+  }
+}

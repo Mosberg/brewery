@@ -1,0 +1,24 @@
+{
+  "id": "brewery:brandy",
+  "display_name": "Brandy",
+  "flavor_intent": "Distilled fruit spirit, often aged",
+  "ingredients": {
+    "fermentables": ["minecraft:apple", "minecraft:melon_slice"],
+    "botanicals": ["minecraft:rose_bush", "minecraft:peony"],
+    "modifiers": ["minecraft:glowstone_dust", "minecraft:redstone"]
+  },
+  "processing": {
+    "stages": ["press", "ferment", "distill", "age"],
+    "metadata_rules": {
+      "base_strength": 2.5,
+      "strength_per_distill": 1.5,
+      "aging_effect": 0.6,
+      "clarity_modifiers": {},
+      "flavor_profile": {
+        "fruit": 3,
+        "oak": 2,
+        "sweet": 1
+      }
+    }
+  }
+}

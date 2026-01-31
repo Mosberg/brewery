@@ -1,0 +1,24 @@
+{
+  "id": "brewery:vodka",
+  "display_name": "Vodka",
+  "flavor_intent": "Very neutral distilled spirit",
+  "ingredients": {
+    "fermentables": ["minecraft:potato"],
+    "botanicals": [],
+    "modifiers": ["minecraft:glowstone_dust", "minecraft:dragon_breath"]
+  },
+  "processing": {
+    "stages": ["mash", "ferment", "distill", "distill"],
+    "metadata_rules": {
+      "base_strength": 2.5,
+      "strength_per_distill": 2.0,
+      "aging_effect": 0.0,
+      "clarity_modifiers": {
+        "minecraft:dragon_breath": 0.3
+      },
+      "flavor_profile": {
+        "neutral": 4
+      }
+    }
+  }
+}

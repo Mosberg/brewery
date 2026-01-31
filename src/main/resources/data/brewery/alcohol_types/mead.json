@@ -1,0 +1,24 @@
+{
+  "id": "brewery:mead",
+  "display_name": "Mead",
+  "flavor_intent": "Honey wine with optional floral notes",
+  "ingredients": {
+    "fermentables": ["minecraft:honey_bottle"],
+    "botanicals": ["minecraft:allium", "minecraft:dandelion", "minecraft:spore_blossom"],
+    "modifiers": ["minecraft:glowstone_dust", "minecraft:redstone"]
+  },
+  "processing": {
+    "stages": ["ferment", "age"],
+    "metadata_rules": {
+      "base_strength": 2.0,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.5,
+      "clarity_modifiers": {},
+      "flavor_profile": {
+        "honey": 4,
+        "floral": 2,
+        "sweet": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "brewery:wine",
+  "display_name": "Wine",
+  "flavor_intent": "Fermented fruit beverage",
+  "ingredients": {
+    "fermentables": ["minecraft:sweet_berries", "minecraft:glow_berries", "minecraft:melon_slice"],
+    "botanicals": ["minecraft:rose_bush", "minecraft:lilac"],
+    "modifiers": ["minecraft:redstone", "minecraft:sugar"]
+  },
+  "processing": {
+    "stages": ["press", "ferment", "age"],
+    "metadata_rules": {
+      "base_strength": 1.8,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.5,
+      "clarity_modifiers": {},
+      "flavor_profile": {
+        "fruit": 4,
+        "tannin": 2,
+        "sweet": 1
+      }
+    }
+  }
+}

@@ -4,16 +4,16 @@ import dk.mosberg.Brewery;
 import dk.mosberg.registry.AlcoholTypeRegistry;
 import dk.mosberg.registry.LiquidRegistry;
 import dk.mosberg.registry.MachineRecipeRegistry;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.SynchronousResourceReloader;
 import net.minecraft.util.Identifier;
 
-public final class BreweryDataLoader implements SimpleSynchronousResourceReloadListener {
+public final class BreweryDataLoader implements SynchronousResourceReloader {
 
     public static void register() {
         net.fabricmc.fabric.api.resource.ResourceManagerHelper
                 .get(net.minecraft.resource.ResourceType.SERVER_DATA)
-                .registerReloadListener(new BreweryDataLoader());
+                .registerReloader(new BreweryDataLoader());
     }
 
     @Override

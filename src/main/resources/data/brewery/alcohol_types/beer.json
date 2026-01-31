@@ -1,0 +1,27 @@
+{
+  "id": "brewery:beer",
+  "display_name": "Beer",
+  "flavor_intent": "General grain-based beer baseline",
+  "ingredients": {
+    "fermentables": ["minecraft:wheat_seeds"],
+    "botanicals": ["minecraft:torchflower_seeds", "#minecraft:small_flowers"],
+    "modifiers": ["minecraft:redstone", "minecraft:glowstone_dust"]
+  },
+  "processing": {
+    "stages": ["mash", "boil", "ferment", "condition"],
+    "metadata_rules": {
+      "base_strength": 1.5,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.2,
+      "clarity_modifiers": {
+        "minecraft:redstone": 0.1,
+        "minecraft:glowstone_dust": -0.1
+      },
+      "flavor_profile": {
+        "grain": 3,
+        "bitter": 2,
+        "floral": 1
+      }
+    }
+  }
+}

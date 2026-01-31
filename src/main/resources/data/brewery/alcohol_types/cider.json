@@ -1,0 +1,24 @@
+{
+  "id": "brewery:cider",
+  "display_name": "Cider",
+  "flavor_intent": "Fermented apple beverage",
+  "ingredients": {
+    "fermentables": ["minecraft:apple", "minecraft:sweet_berries"],
+    "botanicals": ["minecraft:dandelion"],
+    "modifiers": ["minecraft:redstone"]
+  },
+  "processing": {
+    "stages": ["press", "ferment", "condition"],
+    "metadata_rules": {
+      "base_strength": 1.2,
+      "strength_per_distill": 0.0,
+      "aging_effect": 0.2,
+      "clarity_modifiers": {},
+      "flavor_profile": {
+        "fruit": 3,
+        "herbal": 1,
+        "dry": 1
+      }
+    }
+  }
+}
